@@ -5,7 +5,7 @@ defineProps(["extData"]);
 </script>
 
 <template>
-  <table className="table-auto">
+  <table class="table-auto">
     <thead>
       <tr>
         <th>first_name</th>

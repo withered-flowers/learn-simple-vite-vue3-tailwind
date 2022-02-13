@@ -28,7 +28,7 @@ onUnmounted(() => {});
 
 <template>
   <div>
-    <h2 className="h2">Third Component</h2>
+    <h2 class="h2">Third Component</h2>
     <ThirdComponentSubTable v-bind:extData="extData"></ThirdComponentSubTable>
   </div>
 </template>

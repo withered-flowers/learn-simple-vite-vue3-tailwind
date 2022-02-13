@@ -10,14 +10,14 @@ const textInput = ref("");
 
 <template>
   <div>
-    <h2 className="h2">Second Component</h2>
-    <div className="custom-subcontainer">
+    <h2 class="h2">Second Component</h2>
+    <div class="custom-subcontainer">
       <!-- Form Section -->
-      <section className="mr-4">
+      <section class="mr-4">
         <form>
           <!-- Two way data binding automatically using v-model -->
           <input
-            className="form-input"
+            class="form-input"
             type="text"
             placeholder="Write me pl0x"
             v-model="textInput"
