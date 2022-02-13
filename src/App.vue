@@ -4,15 +4,16 @@
 
 // import the component here
 import FirstComponent from "./components/FirstComponent.vue";
+// import the second component here
 import SecondComponent from "./components/SecondComponent.vue";
 </script>
 
 <template>
   <div class="custom-container bg-slate-200">
     <p class="h1">Simple Vue Apps with Tailwind</p>
-    <!-- Call the FirstComponent -->
+    <!-- Create new section to hold FirstComponent -->
     <FirstComponent />
-    <!-- Call the SecondComponent -->
+    <!-- Create new section to hold FirstComponent -->
     <SecondComponent></SecondComponent>
   </div>
 </template>
