@@ -166,9 +166,60 @@ Disclaimer:
 1. create file `src/components/SecondComponentSubContent.vue`
 1. edit `SecondComponentSubContent.jsx`
     ```html
+    <script setup>
+    // get a props from parent component named 'textInput'
+    // via defineProps
+    defineProps(["textInput"]);
+    </script>
+
+    <template>
+      <div>
+        <pre v-if="textInput === ''">I have nothing to show</pre>
+        <pre v-else>I write: {{ textInput }}</pre>
+      </div>
+    </template>
+
+    <style></style>
     ```
 1. edit `SecondComponent.vue`
     ```html
+    <script setup>
+    import { ref } from "vue";
+
+    // We will create a child component to hold the content
+    import SecondComponentSubContent from "./SecondComponentSubContent.vue";
+
+    // state for the text
+    const textInput = ref("");
+    </script>
+
+    <template>
+      <div>
+        <h2 className="h2">Second Component</h2>
+        <div className="custom-subcontainer">
+          <!-- Form Section -->
+          <section className="mr-4">
+            <form>
+              <!-- Two way data binding automatically using v-model -->
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Write me pl0x"
+                v-model="textInput"
+              />
+            </form>
+          </section>
+          <section>
+            <!-- Content section  -->
+
+            <!-- pass textInput to SecondComponentSubContent -->
+            <SecondComponentSubContent v-bind:textInput="textInput" />
+          </section>
+        </div>
+      </div>
+    </template>
+
+    <style></style>
     ```
 1. edit `App.vue`
     ```html
