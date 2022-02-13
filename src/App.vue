@@ -14,7 +14,7 @@ import SecondComponent from "./components/SecondComponent.vue";
     <!-- Create new section to hold FirstComponent -->
     <FirstComponent />
     <!-- Create new section to hold FirstComponent -->
-    <SecondComponent></SecondComponent>
+    <SecondComponent />
   </div>
 </template>
 
