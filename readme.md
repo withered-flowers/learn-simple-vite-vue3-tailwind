@@ -247,3 +247,130 @@ Disclaimer:
     ```
 
 ## ThirdComponent
+1. create file `src/components/ThirdComponent.vue`
+1. create file `src/components/ThirdComponentSubTable.vue`
+1. create file `src/components/ThirdComponentSubTableContent.vue`
+1. edit file `ThirdComponentSubTableContent.vue`
+    ```html
+    <script setup>
+    defineProps(["item"]);
+    </script>
+
+    <template>
+      <tr v-bind:key="item.id">
+        <td>{{ item.first_name }}</td>
+        <td>{{ item.last_name }}</td>
+        <td>{{ item.email }}</td>
+        <td>
+          <img v-bind:src="item.avatar" />
+        </td>
+      </tr>
+    </template>
+
+    <style></style>
+    ```
+1. edit file `ThirdComponentSubTable.vue`
+    ```html
+    <script setup>
+    import ThirdComponentSubTableContent from "./ThirdComponentSubTableContent.vue";
+
+    defineProps(["extData"]);
+    </script>
+
+    <template>
+      <table className="table-auto">
+        <thead>
+          <tr>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+            <th>avatar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Create the loop for rendering the data  -->
+          <!-- Loop the table rows and pass the item -->
+          <ThirdComponentSubTableContent
+            v-for="item in extData"
+            v-bind:key="item.id"
+            v-bind:item="item"
+          />
+        </tbody>
+      </table>
+    </template>
+
+    <style></style>
+    ```
+1. edit file `ThirdComponent.vue`
+    ```html
+    <script setup>
+    import { onMounted, onUnmounted, ref } from "vue";
+    import ThirdComponentSubTable from "./ThirdComponentSubTable.vue";
+
+    const extData = ref([]);
+
+    const fetchData = async () => {
+      // fetch data from external API
+      const response = await fetch("https://reqres.in/api/users");
+      const jsonData = await response.json();
+
+      // set fetched data to state
+      extData.value = jsonData.data.slice(0, 3);
+    };
+
+    // we will fetch the data from the external API
+    // using the methods that we have created
+    // the fetchExternalData method
+
+    // this is the same as componentDidMount on React
+    onMounted(() => {
+      fetchData();
+    });
+
+    // this is the same as componentDidUnmount on React
+    onUnmounted(() => {});
+    </script>
+
+    <template>
+      <div>
+        <h2 className="h2">Third Component</h2>
+        <ThirdComponentSubTable v-bind:extData="extData"></ThirdComponentSubTable>
+      </div>
+    </template>
+
+    <style></style>
+    ```
+1. edit file `App.vue`
+    ```html
+    <script setup>
+    // This starter template is using Vue 3 <script setup> SFCs
+    // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+
+    // import the component here
+    import FirstComponent from "./components/FirstComponent.vue";
+    // import the second component here
+    import SecondComponent from "./components/SecondComponent.vue";
+    // import the third component here
+    import ThirdComponent from "./components/ThirdComponent.vue";
+    </script>
+
+    <template>
+      <div class="custom-container bg-slate-200">
+        <p class="h1">Simple Vue Apps with Tailwind</p>
+        <!-- Create new section to hold FirstComponent -->
+        <section>
+          <FirstComponent />
+        </section>
+        <!-- Create new section to hold SecondComponent -->
+        <section>
+          <SecondComponent />
+        </section>
+        <!-- Create new section to hold ThirdComponent -->
+        <section>
+          <ThirdComponent />
+        </section>
+      </div>
+    </template>
+
+    <style></style>
+    ```

@@ -6,15 +6,25 @@
 import FirstComponent from "./components/FirstComponent.vue";
 // import the second component here
 import SecondComponent from "./components/SecondComponent.vue";
+// import the third component here
+import ThirdComponent from "./components/ThirdComponent.vue";
 </script>
 
 <template>
   <div class="custom-container bg-slate-200">
     <p class="h1">Simple Vue Apps with Tailwind</p>
     <!-- Create new section to hold FirstComponent -->
-    <FirstComponent />
-    <!-- Create new section to hold FirstComponent -->
-    <SecondComponent />
+    <section>
+      <FirstComponent />
+    </section>
+    <!-- Create new section to hold SecondComponent -->
+    <section>
+      <SecondComponent />
+    </section>
+    <!-- Create new section to hold ThirdComponent -->
+    <section>
+      <ThirdComponent />
+    </section>
   </div>
 </template>
 
