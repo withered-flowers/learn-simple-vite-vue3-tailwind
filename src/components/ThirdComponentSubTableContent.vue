@@ -3,7 +3,7 @@ defineProps(["item"]);
 </script>
 
 <template>
-  <tr v-bind:key="item.id">
+  <tr>
     <td>{{ item.first_name }}</td>
     <td>{{ item.last_name }}</td>
     <td>{{ item.email }}</td>
