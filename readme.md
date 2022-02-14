@@ -74,7 +74,7 @@ Disclaimer:
     import { createApp } from "vue";
     import App from "./App.vue";
     // import the tailwind css here
-    import "./index.csse";
+    import "./index.css";
 
     createApp(App).mount("#app");
     ```
