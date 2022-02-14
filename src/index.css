@@ -34,3 +34,7 @@ td,
 th {
   @apply border border-slate-500 p-2;
 }
+
+.link {
+  @apply underline text-sky-600 hover:text-green-600 m-2;
+}

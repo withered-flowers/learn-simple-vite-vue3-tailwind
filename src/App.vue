@@ -23,7 +23,16 @@ import ThirdComponent from "./components/ThirdComponent.vue";
     </section>
     <!-- Create new section to hold ThirdComponent -->
     <section>
-      <ThirdComponent />
+      <!-- <ThirdComponent /> -->
+      <nav>
+        <!--  Declare the link in here (href)  -->
+        <router-link class="link" to="/">Back</router-link>
+        <router-link class="link" to="/third-component"
+          >Third Component</router-link
+        >
+      </nav>
+      <!-- create the router-view to hold the component -->
+      <router-view></router-view>
     </section>
   </div>
 </template>

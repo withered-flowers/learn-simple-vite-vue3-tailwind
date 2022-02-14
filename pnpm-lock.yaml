@@ -7,9 +7,11 @@ specifiers:
   tailwindcss: ^3.0.22
   vite: ^2.8.0
   vue: ^3.2.25
+  vue-router: '4'
 
 dependencies:
   vue: 3.2.31
+  vue-router: 4.0.12_vue@3.2.31
 
 devDependencies:
   '@vitejs/plugin-vue': 2.2.0_vite@2.8.1+vue@3.2.31
@@ -119,6 +121,10 @@ packages:
     dependencies:
       '@vue/compiler-dom': 3.2.31
       '@vue/shared': 3.2.31
+    dev: false
+
+  /@vue/devtools-api/6.0.8:
+    resolution: {integrity: sha512-bzei608bPVQE2yq9Ghrjn/dnpf27mWfrr0q0ZQiuZoO3LQqFG0T1xSGz+9vw1j9KAZM2Cu9vdQMkddDxqzZGNg==}
     dev: false
 
   /@vue/reactivity-transform/3.2.31:
@@ -995,6 +1001,15 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-router/4.0.12_vue@3.2.31:
+    resolution: {integrity: sha512-CPXvfqe+mZLB1kBWssssTiWg4EQERyqJZes7USiqfW9B5N2x+nHlnsM1D3b5CaJ6qgCvMmYJnz+G0iWjNCvXrg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-api': 6.0.8
+      vue: 3.2.31
+    dev: false
 
   /vue/3.2.31:
     resolution: {integrity: sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw==}

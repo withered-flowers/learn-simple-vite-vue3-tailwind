@@ -374,3 +374,28 @@ Disclaimer:
 
     <style></style>
     ```
+
+## Pre-FourthComponent (Router)
+1. `pnpm add vue-router@4`
+1. edit `index.css`
+    ```css
+    .link {
+      @apply underline text-sky-600 hover:text-green-600 m-2;
+    }
+    ```
+1. create folder `src/routes`
+1. create file `src/routes/route.js`
+1. edit `main.js`
+    ```js
+    import { createApp } from "vue";
+    import App from "./App.vue";
+    // import the router that we have created here
+    import router from "./routes/route";
+    // import the tailwind css here
+    import "./index.css";
+
+    const app = createApp(App);
+    app.use(router);
+    app.mount("#app");
+    ```
+1. edit 
