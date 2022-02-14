@@ -164,7 +164,7 @@ Disclaimer:
 ## SecondComponent
 1. create file `src/components/SecondComponent.vue`
 1. create file `src/components/SecondComponentSubContent.vue`
-1. edit `SecondComponentSubContent.jsx`
+1. edit `SecondComponentSubContent.vue`
     ```html
     <script setup>
     // get a props from parent component named 'textInput'
@@ -195,14 +195,14 @@ Disclaimer:
 
     <template>
       <div>
-        <h2 className="h2">Second Component</h2>
-        <div className="custom-subcontainer">
+        <h2 class="h2">Second Component</h2>
+        <div class="custom-subcontainer">
           <!-- Form Section -->
-          <section className="mr-4">
+          <section class="mr-4">
             <form>
               <!-- Two way data binding automatically using v-model -->
               <input
-                className="form-input"
+                class="form-input"
                 type="text"
                 placeholder="Write me pl0x"
                 v-model="textInput"
@@ -278,7 +278,7 @@ Disclaimer:
     </script>
 
     <template>
-      <table className="table-auto">
+      <table class="table-auto">
         <thead>
           <tr>
             <th>first_name</th>
@@ -333,7 +333,7 @@ Disclaimer:
 
     <template>
       <div>
-        <h2 className="h2">Third Component</h2>
+        <h2 class="h2">Third Component</h2>
         <ThirdComponentSubTable v-bind:extData="extData"></ThirdComponentSubTable>
       </div>
     </template>
