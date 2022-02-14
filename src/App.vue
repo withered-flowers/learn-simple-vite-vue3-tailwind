@@ -19,7 +19,7 @@ import ThirdComponent from "./components/ThirdComponent.vue";
     </section>
     <!-- Create new section to hold SecondComponent -->
     <section>
-      <SecondComponent />
+      <SecondComponents />
     </section>
     <!-- Create new section to hold ThirdComponent -->
     <section>
