@@ -30,6 +30,9 @@ import ThirdComponent from "./components/ThirdComponent.vue";
         <router-link class="link" to="/third-component"
           >Third Component</router-link
         >
+        <router-link class="link" to="/fourth-component"
+          >Fourth Component</router-link
+        >
       </nav>
       <!-- create the router-view to hold the component -->
       <router-view></router-view>

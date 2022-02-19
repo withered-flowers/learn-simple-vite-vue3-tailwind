@@ -398,4 +398,291 @@ Disclaimer:
     app.use(router);
     app.mount("#app");
     ```
-1. edit 
+1. edit `route.js`
+    ```js
+    // import createRouter for using the vue-router
+    // import createWebHistory to use the history mode
+    import { createRouter, createWebHistory } from "vue-router";
+    import ThirdComponent from "../components/ThirdComponent.vue";
+
+    // declare the routes needed for the application
+    const routes = [{ path: "/third-component", component: ThirdComponent }];
+
+    // declare the router to be used by Vue
+    const router = createRouter({
+      history: createWebHistory(),
+      routes,
+    });
+
+    export default router;
+    ```
+1. edit `App.vue`
+    ```html
+    <script setup>
+    // This starter template is using Vue 3 <script setup> SFCs
+    // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+
+    // import the component here
+    import FirstComponent from "./components/FirstComponent.vue";
+    // import the second component here
+    import SecondComponent from "./components/SecondComponent.vue";
+    // import the third component here
+    import ThirdComponent from "./components/ThirdComponent.vue";
+    </script>
+
+    <template>
+      <div class="custom-container bg-slate-200">
+        <p class="h1">Simple Vue Apps with Tailwind</p>
+        <!-- Create new section to hold FirstComponent -->
+        <section>
+          <FirstComponent />
+        </section>
+        <!-- Create new section to hold SecondComponent -->
+        <section>
+          <SecondComponent />
+        </section>
+        <!-- Create new section to hold ThirdComponent -->
+        <section>
+          <!-- <ThirdComponent /> -->
+          <nav>
+            <!--  Declare the link in here (href)  -->
+            <router-link class="link" to="/">Back</router-link>
+            <router-link class="link" to="/third-component"
+              >Third Component</router-link
+            >
+          </nav>
+          <!-- create the router-view to hold the component -->
+          <router-view></router-view>
+        </section>
+      </div>
+    </template>
+
+    <style></style>
+    ```
+
+## FourthComponent
+1. create file `src/components/FourthComponent.vue`
+1. create file `src/components/FourthComponentSubTable.vue`
+1. create file `src/components/FourthComponentSubTableContent.vue`
+1. create file `src/components/FourthComponentSubInput.vue`
+1. edit `src/routes/route.js` to import `FourthComponent.vue` and adding routes to `fourth-component`
+    ```js
+    // import createRouter for using the vue-router
+    // import createWebHistory to use the history mode
+    import { createRouter, createWebHistory } from "vue-router";
+    import ThirdComponent from "../components/ThirdComponent.vue";
+    // import fourth component
+    import FourthComponent from "../components/FourthComponent.vue";
+
+    // declare the routes needed for the application
+    const routes = [
+      { path: "/third-component", component: ThirdComponent },
+      // declare FourthComponent
+      {
+        path: "/fourth-component",
+        component: FourthComponent,
+      },
+    ];
+
+    // declare the router to be used by Vue
+    const router = createRouter({
+      history: createWebHistory(),
+      routes,
+    });
+
+    export default router;
+    ```
+1. edit `App.vue` to add FourthComponent
+    ```html
+    <script setup>
+    // This starter template is using Vue 3 <script setup> SFCs
+    // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+
+    // import the component here
+    import FirstComponent from "./components/FirstComponent.vue";
+    // import the second component here
+    import SecondComponent from "./components/SecondComponent.vue";
+    // import the third component here
+    import ThirdComponent from "./components/ThirdComponent.vue";
+    </script>
+
+    <template>
+      <div class="custom-container bg-slate-200">
+        <p class="h1">Simple Vue Apps with Tailwind</p>
+        <!-- Create new section to hold FirstComponent -->
+        <section>
+          <FirstComponent />
+        </section>
+        <!-- Create new section to hold SecondComponent -->
+        <section>
+          <SecondComponent />
+        </section>
+        <!-- Create new section to hold ThirdComponent -->
+        <section>
+          <!-- <ThirdComponent /> -->
+          <nav>
+            <!--  Declare the link in here (href)  -->
+            <router-link class="link" to="/">Back</router-link>
+            <router-link class="link" to="/third-component"
+              >Third Component</router-link
+            >
+            <router-link class="link" to="/fourth-component"
+              >Fourth Component</router-link
+            >
+          </nav>
+          <!-- create the router-view to hold the component -->
+          <router-view></router-view>
+        </section>
+      </div>
+    </template>
+
+    <style></style>
+    ```
+1. edit `FourthComponent.vue`
+    ```html
+    <script setup>
+    import { onMounted, onUnmounted, ref } from "vue";
+    import FourthComponentSubTable from "./FourthComponentSubTable.vue";
+    import FourthComponentSubInput from "./FourthComponentSubInput.vue";
+
+    // state for fetched external data
+    // initial value is an empty array
+    const extData = ref([]);
+
+    // state for selected row (we only fetch the email, so initial state will be string)
+    const selectedExtData = ref("");
+
+    // declare function to set the ext data
+    const setExtData = (data) => {
+      extData.value = data;
+    };
+
+    // declare function to set the selected email
+    const setSelectedEmail = (email) => {
+      selectedExtData.value = email;
+    };
+
+    const fetchData = async () => {
+      // fetch data from external API
+      const response = await fetch("https://reqres.in/api/users");
+      const jsonData = await response.json();
+
+      // set fetched data to state
+      setExtData(jsonData.data.slice(3, 6));
+    };
+
+    // we will fetch the data when this FourthComponent is rendered
+    // using the onMounted hook to fetch the data
+    // this is the same as componentDidMount on React
+    onMounted(() => {
+      fetchData();
+    });
+
+    // this is the same as componentDidUnmount on React
+    onUnmounted(() => {});
+    </script>
+
+    <template>
+      <div>
+        <h2 className="h2">Fourth Component</h2>
+        <FourthComponentSubInput
+          v-bind:selectedExtData="selectedExtData"
+        ></FourthComponentSubInput>
+        <!-- pass the setSelectedEmail function here -->
+        <FourthComponentSubTable
+          v-bind:extData="extData"
+          v-on:setSelectedEmail="setSelectedEmail"
+        ></FourthComponentSubTable>
+      </div>
+    </template>
+    ```
+1. edit `FourthComponentSubInput.vue`
+    ```html
+    <script setup>
+    defineProps(["selectedExtData"]);
+    </script>
+
+    <template>
+      <div>
+        <input
+          type="text"
+          className="form-input"
+          placeholder="Choose from below"
+          v-bind:value="selectedExtData"
+          disabled
+        />
+      </div>
+    </template>
+    ```
+1. edit `FourthComponentSubTable.vue`
+    ```html
+    <script setup>
+    import FourthComponentSubTableContent from "./FourthComponentSubTableContent.vue";
+
+    // Receive the passed props extData to this component
+    defineProps(["extData"]);
+
+    // Receive the passed events setSelectedEmail to this component
+    const emit = defineEmits(["setSelectedEmail"]);
+
+    // define the function to use the emitted event from parent
+    const setSelectedEmail = (email) => {
+      emit("setSelectedEmail", email);
+    };
+    </script>
+
+    <template>
+      <table className="table-auto">
+        <thead>
+          <tr>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+            <th>avatar</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Create the loop for rendering the data  -->
+
+          <!-- Loop the table rows and pass the item function from props -->
+          <FourthComponentSubTableContent
+            v-for="item in extData"
+            v-bind:key="item.id"
+            v-bind:item="item"
+            v-on:setSelectedEmail="setSelectedEmail"
+          />
+        </tbody>
+      </table>
+    </template>
+    ```
+1. edit `FourthComponentSubTableContent.vue`
+    ```html
+    <script setup>
+    defineProps(["item"]);
+
+    // Receive the passed events setSelectedEmail to this component
+    const emit = defineEmits(["setSelectedEmail"]);
+
+    // define the function to use the emitted event from parent
+    const setSelectedEmail = (email) => {
+      emit("setSelectedEmail", email);
+    };
+    </script>
+
+    <template>
+      <tr>
+        <td>{{ item.first_name }}</td>
+        <td>{{ item.last_name }}</td>
+        <td>{{ item.email }}</td>
+        <td>
+          <img v-bind:src="item.avatar" />
+        </td>
+        <td>
+          <button className="btn" v-on:click="setSelectedEmail(item.email)">
+            Choose Me pl0x
+          </button>
+        </td>
+      </tr>
+    </template>
+    ```
